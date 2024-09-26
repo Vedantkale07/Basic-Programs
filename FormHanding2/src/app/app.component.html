@@ -1,0 +1,71 @@
+<div>
+  <h1>Student Feedback Form</h1>
+
+  <!-- Input Form -->
+  <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <div>
+      <input
+        type="text"
+        [(ngModel)]="studentName"
+        name="studentName"
+        placeholder="Student Name"
+        required
+        #nameInput="ngModel"
+      />
+      <div *ngIf="nameInput.invalid && nameInput.touched" class="error">
+        Student Name is required.
+      </div>
+    </div>
+
+    <div>
+      <input
+        type="number"
+        [(ngModel)]="batchNumber"
+        name="batchNumber"
+        placeholder="Batch Number"
+        required
+        #batchInput="ngModel"
+        min="1"
+      />
+      <div *ngIf="batchInput.invalid && batchInput.touched" class="error">
+        Batch Number is required and must be greater than 0.
+      </div>
+    </div>
+
+    <div>
+      <textarea
+        [(ngModel)]="feedbackText"
+        name="feedbackText"
+        placeholder="Enter your feedback"
+        required
+        #feedbackInput="ngModel"
+      ></textarea>
+      <div *ngIf="feedbackInput.invalid && feedbackInput.touched" class="error">
+        Feedback is required.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Submit Feedback</button>
+  </form>
+
+  <!-- Display Submitted Feedback -->
+  <div *ngIf="feedbackEntries.length">
+    <h2>Submitted Feedback</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Student Name</th>
+          <th>Batch Number</th>
+          <th>Feedback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entry of feedbackEntries">
+          <td>{{ entry.studentName }}</td>
+          <td>{{ entry.batchNumber }}</td>
+          <td>{{ entry.feedbackText }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

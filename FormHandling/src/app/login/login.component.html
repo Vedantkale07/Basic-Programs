@@ -1,0 +1,13 @@
+<h3>1 Way data Binding</h3>
+<form #loginForm="ngForm" (ngSubmit)="xyz(loginForm)">
+  username: <input type="text" name="username" ngModel><br>
+  password: <input type="text" name="password" ngModel><br>
+  <button type="submit">Login</button>
+</form>
+
+<h3>2 Way data Binding</h3>
+<form (ngSubmit)="abc()">
+  username: <input type="text" name="username" [(ngModel)]="username"><br><br>
+  password: <input type="text" name="password" [(ngModel)]="password" ><br><br>
+  <button type="submit">Login</button>
+</form>

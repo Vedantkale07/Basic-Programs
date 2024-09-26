@@ -1,0 +1,16 @@
+<div style="text-align:center">
+  <h1>Multiplication Table Generator</h1>
+  <input type="number" [(ngModel)]="limit" placeholder="Generate tables up to..." />
+  <button (click)="generateTables()">Generate Tables</button>
+
+  <div *ngIf="tables.length">
+    <div *ngFor="let table of tables">
+      <h2>Multiplication Table for {{ table.number }}:</h2>
+      <table border="1" style="margin: auto;" >
+        <tr *ngFor="let row of table.data">
+          <td>{{ table.number }} x {{ row }} = {{ table.number * row }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
